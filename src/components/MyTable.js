@@ -5,7 +5,7 @@ const columns = [
     { title: 'Name', dataIndex: 'name', key: 'name' },
     { title: 'Age', dataIndex: 'age', key: 'age' },
     { title: 'Address', dataIndex: 'address', key: 'address' },
-    { title: 'Action', dataIndex: '', key: 'x', render: () => <a href="javascript:;">Delete</a> },
+    // { title: 'Action', dataIndex: '', key: 'x', render: () => <a href="javascript:;">Delete</a> },
   ];
   
   const data = [
@@ -15,10 +15,10 @@ const columns = [
   ];
 
 export default class MyTable extends React.Component{
-    constructor() {
-        super();
+    // constructor() {
+    //     super();
         
-    }
+    // }
 
 
     render(){
