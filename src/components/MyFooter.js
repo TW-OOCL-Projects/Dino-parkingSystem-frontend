@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import React from 'react';
+import { Layout } from 'antd';
 const { Footer } = Layout;
 
 export default class MyFooter extends React.Component {

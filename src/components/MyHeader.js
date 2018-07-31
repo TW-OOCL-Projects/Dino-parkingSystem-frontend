@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-const { SubMenu } = Menu;
+import React from 'react';
+import { Layout, Menu } from 'antd';
 const { Header } = Layout;
 
 export default class MyHeader extends React.Component {
