@@ -3,10 +3,7 @@ node_js:
   - "stable"
 cache:
   directories:
-    - node_modules
-cache: yarn
-install:
-  - yarn install
+  - node_modules
 script:
   - npm test
   - npm run build

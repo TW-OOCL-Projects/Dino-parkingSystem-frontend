@@ -16,7 +16,7 @@ export default class MySider extends React.Component {
                     >
                        
                         <Menu.Item key="1">
-                            <Link to="../">
+                            <Link to="EmployeeManage">
                                 <Icon type="form" />
                                 <span>员工管理</span>
                             </Link>

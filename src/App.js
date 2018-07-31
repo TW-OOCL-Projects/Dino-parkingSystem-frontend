@@ -26,7 +26,7 @@ class App extends Component {
 
               <MySider />
 
-              <Route exact path="/" component={EmployeeManage}></Route>
+              <Route exact path="/EmployeeManage" component={EmployeeManage}></Route>
               <Route  path="/ParkingLotManage" component={ParkingLotManage}></Route> 
               <Route  path="/ParkingBoyManage" component={ParkingBoyManage}></Route>
               <Route  path="/ParkingLotDashboard" component={ParkingLotDashboard}></Route> 
