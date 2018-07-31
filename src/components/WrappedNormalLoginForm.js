@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-//import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
-import '../login.css';
+import '../css/login.css';
 import {Form, Icon, Input, Button, Checkbox} from 'antd';
-
+import { Link } from 'react-router-dom';
 const FormItem = Form.Item;
 
 class Login extends Component {
@@ -40,6 +39,7 @@ class NormalLoginForm extends React.Component {
   render() {
     const {getFieldDecorator} = this.props.form;
     return (
+      <div>
       <Form onSubmit={this.handleSubmit} className="login-form">
         <FormItem>
           {getFieldDecorator('userName', {
@@ -79,12 +79,18 @@ class NormalLoginForm extends React.Component {
           )}
           <a className="login-form-forgot" href="">Forgot password</a>
           <Button type="primary" htmlType="submit" className="login-form-button">
-            Log in
+            Log in 
           </Button>
           {/* Or
           <a href="">register now!</a> */}
         </FormItem>
       </Form>
+      
+        <Link to="./EmployeeManage" >jumpppppp</Link>
+      
+      
+      </div>
+      
     );
   }
 }
