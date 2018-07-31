@@ -8,8 +8,8 @@ cache: yarn
 install:
   - yarn install
 script:
-  - npm run lint
   - npm test
+  - npm run build
 deploy:
   provider: heroku
   api_key: a77bbe1d-a864-4548-8d8c-144c809c6c9f
