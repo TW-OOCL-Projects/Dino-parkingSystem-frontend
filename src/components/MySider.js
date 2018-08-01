@@ -5,6 +5,7 @@ const { Sider } = Layout;
 
 export default class MySider extends React.Component {
     render() {
+        const {getAllEmployees} = this.props;
         return (
             
             <Sider width={200} style={{ background: '#fff' }}>
@@ -16,7 +17,9 @@ export default class MySider extends React.Component {
                 >
                     
                     <Menu.Item key="1">
+
                         <Link to="/App/EmployeeManage">
+
                             <Icon type="form" />
                             <span>员工管理</span>
                         </Link>

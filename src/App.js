@@ -10,6 +10,9 @@ import  ParkingBoyManage  from "./components/ParkingBoyManage";
 import  ParkingLotDashboard  from "./containers/ParkingLotDashboardContainer";
 import  OrderManage  from "./components/OrderManage";
 import  MyFooter  from "./components/MyFooter";
+import EmployeeManageContainer from './containers/EmployeeManageContainer';
+import WrappedAddEmployee from './components/AddEmployee';
+import MySiderContainer from './containers/MySiderContainer';
 
 const {Content} = Layout;
 
@@ -29,13 +32,15 @@ class App extends Component {
           <Content style={{ padding: '0 50px', marginTop: 20}}>
             <Layout style={{ padding: '24px 0', background: '#fff' }}>
 
-              <MySider />
+              <MySiderContainer />
+
 
               <Route exact path="/App/EmployeeManage" component={EmployeeManage}></Route>
               <Route  path="/App/ParkingLotManage" component={ParkingLotManage}></Route> 
               <Route  path="/App/ParkingBoyManage" component={ParkingBoyManage}></Route>
               <Route  path="/App/ParkingLotDashboard" component={ParkingLotDashboard}></Route> 
               <Route  path="/App/OrderManage" component={OrderManage}></Route>    
+              <Route path="/AddEmployee" component={WrappedAddEmployee}></Route>
 
             </Layout>
           </Content>
