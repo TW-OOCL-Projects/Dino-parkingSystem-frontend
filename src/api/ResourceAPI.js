@@ -18,7 +18,7 @@ const ResourceAPi = {
         axios.
             post(`${this.apiUrl}/users`, employee)
             .then(function (response) {
-                successCallBack(response.data);
+                successCallBack(response.status);
             }) 
             .catch(function (error) {
                 console.log(error);

@@ -28,6 +28,9 @@ const columns = [
   ];
 
 export default class EmployeeManage extends React.Component {
+    componentDidMount() {
+        this.props.getAllEmployees();
+    }
     render() {
         const {employees} = this.props;
         return (
