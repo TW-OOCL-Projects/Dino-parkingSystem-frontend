@@ -1,0 +1,1 @@
+export const showParkingLotsList = (list) => ({ type: 'SHOW_PARKINGLOTSLIST',list})
