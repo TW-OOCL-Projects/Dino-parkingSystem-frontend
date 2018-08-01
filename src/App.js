@@ -7,13 +7,18 @@ import  MySider  from "./components/MySider";
 import  EmployeeManage  from "./components/EmployeeManage";
 import  ParkingLotManage  from "./components/ParkingLotManage";
 import  ParkingBoyManage  from "./components/ParkingBoyManage";
-import  ParkingLotDashboard  from "./components/ParkingLotDashboard";
+import  ParkingLotDashboard  from "./containers/ParkingLotDashboardContainer";
 import  OrderManage  from "./components/OrderManage";
 import  MyFooter  from "./components/MyFooter";
 
 const {Content} = Layout;
 
 class App extends Component {
+
+  
+  
+
+
   render() {
     return (
       <div>
@@ -26,11 +31,11 @@ class App extends Component {
 
               <MySider />
 
-              <Route exact path="/EmployeeManage" component={EmployeeManage}></Route>
-              <Route  path="/ParkingLotManage" component={ParkingLotManage}></Route> 
-              <Route  path="/ParkingBoyManage" component={ParkingBoyManage}></Route>
-              <Route  path="/ParkingLotDashboard" component={ParkingLotDashboard}></Route> 
-              <Route  path="/OrderManage" component={OrderManage}></Route>    
+              <Route exact path="/App/EmployeeManage" component={EmployeeManage}></Route>
+              <Route  path="/App/ParkingLotManage" component={ParkingLotManage}></Route> 
+              <Route  path="/App/ParkingBoyManage" component={ParkingBoyManage}></Route>
+              <Route  path="/App/ParkingLotDashboard" component={ParkingLotDashboard}></Route> 
+              <Route  path="/App/OrderManage" component={OrderManage}></Route>    
 
             </Layout>
           </Content>
