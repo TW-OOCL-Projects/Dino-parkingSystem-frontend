@@ -16,35 +16,35 @@ export default class MySider extends React.Component {
                 >
                     
                     <Menu.Item key="1">
-                        <Link to="EmployeeManage">
+                        <Link to="/App/EmployeeManage">
                             <Icon type="form" />
                             <span>员工管理</span>
                         </Link>
                     </Menu.Item>
 
                     <Menu.Item key="2">
-                        <Link to="ParkingLotManage">
+                        <Link to="/App/ParkingLotManage">
                             <Icon type="form" />
                             <span>停车场管理</span>
                         </Link>
                     </Menu.Item>
 
                     <Menu.Item key="3">
-                        <Link to="ParkingBoyManage">
+                        <Link to="/App/ParkingBoyManage">
                             <Icon type="form" />
                             <span>停车员管理</span>
                         </Link>
                     </Menu.Item>
 
                     <Menu.Item key="4">
-                        <Link to="ParkingLotDashboard">
+                        <Link to="/App/ParkingLotDashboard">
                             <Icon type="form" />
                             <span>停车场Dashboard</span>
                         </Link>
                     </Menu.Item>
 
                     <Menu.Item key="5">
-                        <Link to="OrderManage">
+                        <Link to="/App/OrderManage">
                             <Icon type="form" />
                             <span>订单管理</span>
                         </Link>
