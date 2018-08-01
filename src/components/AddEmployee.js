@@ -5,30 +5,6 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
 
-const residences = [{
-  value: 'zhejiang',
-  label: 'Zhejiang',
-  children: [{
-    value: 'hangzhou',
-    label: 'Hangzhou',
-    children: [{
-      value: 'xihu',
-      label: 'West Lake',
-    }],
-  }],
-}, {
-  value: 'jiangsu',
-  label: 'Jiangsu',
-  children: [{
-    value: 'nanjing',
-    label: 'Nanjing',
-    children: [{
-      value: 'zhonghuamen',
-      label: 'Zhong Hua Men',
-    }],
-  }],
-}];
-
 class AddEmployee extends React.Component {
   state = {
     confirmDirty: false,
@@ -121,14 +97,14 @@ class AddEmployee extends React.Component {
           {...formItemLayout}
           label="账号"
         >
-          {getFieldDecorator('password', {
+          {getFieldDecorator('username', {
             rules: [{
-              required: true, message: 'Please input your password!',
+              required: true, message: 'Please input your username!',
             }, {
               validator: this.validateToNextPassword,
             }],
           })(
-            <Input type="password" />
+            <Input />
           )}
         </FormItem>
         <FormItem
@@ -142,14 +118,20 @@ class AddEmployee extends React.Component {
               validator: this.validateToNextPassword,
             }],
           })(
-            <Input type="password" />
+            <Input />
           )}
         </FormItem>
         <FormItem
           {...formItemLayout}
           label="姓名"
         >
+            {getFieldDecorator('name', {
+            rules: [{
+              required: true, message: 'Please input your E-mail!',
+            }],
+          })(
             <Input />
+          )}
         </FormItem>
         <FormItem
           {...formItemLayout}

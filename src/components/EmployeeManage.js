@@ -7,7 +7,7 @@ const {Option} = Select;
 
 const columns = [
     { title: 'ID', dataIndex: 'id', key: 'id'},
-    { title: '姓名', dataIndex: 'name', key: 'name' },
+    { title: '姓名', dataIndex: 'nickname', key: 'nickname' },
     { title: 'E-mail', dataIndex: 'email', key: 'email' },
     { title: '电话号码', dataIndex: 'phone', key: 'phone' },
     { title: '操作', key: 'operation', render: (text, record) => (

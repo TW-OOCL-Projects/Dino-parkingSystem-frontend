@@ -12,6 +12,7 @@ import  OrderManage  from "./components/OrderManage";
 import  MyFooter  from "./components/MyFooter";
 import EmployeeManageContainer from './containers/EmployeeManageContainer';
 import WrappedAddEmployee from './components/AddEmployee';
+import MySiderContainer from './containers/MySiderContainer';
 
 const {Content} = Layout;
 
@@ -26,7 +27,7 @@ class App extends Component {
           <Content style={{ padding: '0 50px', marginTop: 20}}>
             <Layout style={{ padding: '24px 0', background: '#fff' }}>
 
-              <MySider />
+              <MySiderContainer />
 
               <Route exact path="/EmployeeManage" component={EmployeeManageContainer}></Route>
               <Route  path="/ParkingLotManage" component={ParkingLotManage}></Route> 
