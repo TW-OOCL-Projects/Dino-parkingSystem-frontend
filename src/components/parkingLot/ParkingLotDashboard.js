@@ -18,25 +18,26 @@ class ParkingLotDashboard extends React.Component {
 
   render() {
     return (
-      <Content style={{
-        padding: '0 24px',
-        minHeight: 280
-      }}>
-        <div style={{
-          padding: '50px'
-        }}>
+      <Content style={{padding: '0 24px',minHeight: 280}}>
+      <div>
           <Row gutter={16}>
-
             {/* <DashBoardCard/> */}
             <div>
               {this
                 .props
                 .lotsList
-                .map(item => <Col xs={20} sm={16} md={12} lg={8} xl={4} >
-                  <Card title={item.parkingLotName}>
-                    <Progress type="dashboard" format={() => `${item.carNum}/${item.size}`} percent={(item.carNum / item.size) * 100}/>
-                    <div>停车员:{item.parkingBoyName}
-                    </div>
+                .map(item => <Col xs={24} sm={20} md={12} lg={8} xl={6}>
+                  <Card title={item.parkingLotName} style={{margin:"10px"}}>
+                  <Row>
+                    <Col span={12} >
+                      <Progress 
+                        type="dashboard"
+                        format={() => `${item.carNum}/${item.size}`}
+                        percent={(item.carNum / item.size) * 100}/>
+                    </Col>
+                    <Col span={12}>停车员:{item.parkingBoyName}</Col>
+                    </Row>
+                    <Col offset={1} style={{marginLeft:30}}>停车情况</Col>
                   </Card>
                 </Col>)}
             </div>
@@ -47,6 +48,5 @@ class ParkingLotDashboard extends React.Component {
     );
   }
 }
-
 
 export default ParkingLotDashboard;
