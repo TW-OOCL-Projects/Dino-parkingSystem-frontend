@@ -21,6 +21,7 @@ export default class EmployeeManage extends React.Component {
     state = {
         addVisible: false,
         modifyVisible: false,
+        employeeId: undefined,
     };
 
     columns = [
@@ -31,7 +32,7 @@ export default class EmployeeManage extends React.Component {
         { title: '电话号码', dataIndex: 'phone', key: 'phone' },
         { title: '操作', key: 'operation', render: (text, record) => (
             <span>
-                <a onClick={this.showModifyModal}>修改</a>
+                <a onClick={() => this.showModifyModal(record.id)}>修改</a>
                 <Divider type='vertical' />
                 <a href='#'>冻结</a>
             </span>
@@ -61,8 +62,11 @@ export default class EmployeeManage extends React.Component {
         });
     }
 
-    showModifyModal = () => {
-        this.setState({ modifyVisible: true });
+    showModifyModal = (employeeId) => {
+        this.setState({ 
+            modifyVisible: true,
+            employeeId: employeeId,
+        });
     }
 
     handleModifyCancel = () => {
@@ -86,6 +90,7 @@ export default class EmployeeManage extends React.Component {
                     onCancel={this.handleModifyCancel}
                     onCreate={this.handleCreate}
                     getAllEmployees={this.props.getAllEmployees}
+                    employeeId={this.state.employeeId}
                 />
                 <AddEmployee
                     wrappedComponentRef={this.saveFormRef}
@@ -118,190 +123,3 @@ export default class EmployeeManage extends React.Component {
         );
     }
 }
-
-// const FormItem = Form.Item;
-// const AutoCompleteOption = AutoComplete.Option;
-// const AddEmployee = Form.create()(
-//     class extends React.Component {
-//         state = {
-//             confirmDirty: false,
-//             autoCompleteResult: [],
-//             addVisible: false,
-//             context: '',
-//         };
-
-//         getStatusCode(statusCode) {
-//             if (statusCode === 201) {
-//                 this.setState({
-//                     addVisible: true,
-//                     context: <Alert message="Success Text" type="success" />,
-//                 })
-//             } else {
-//                 this.setState({
-//                     addVisible: true,
-//                     context: <Alert message="Error Text" type="error" />,
-//                 })
-//             }
-//         }
-//         handleSubmit = (e) => {
-//             e.preventDefault();
-//             this.props.form.validateFieldsAndScroll((err, values) => {
-//                 if (!err) {
-//                     console.log('Received values of form: ', values);
-//                     ResourceAPi.addEmployee(values, (statusCode) => this.getStatusCode(statusCode));
-//                 }
-//             });
-//         }
-
-//         handleConfirmBlur = (e) => {
-//             const value = e.target.value;
-//             this.setState({ confirmDirty: this.state.confirmDirty || !!value });
-//         }
-
-//         compareToFirstPassword = (rule, value, callback) => {
-//             const form = this.props.form;
-//             if (value && value !== form.getFieldValue('password')) {
-//                 callback('Two passwords that you enter is inconsistent!');
-//             } else {
-//                 callback();
-//             }
-//         }
-
-//         validateToNextPassword = (rule, value, callback) => {
-//             const form = this.props.form;
-//             if (value && this.state.confirmDirty) {
-//                 form.validateFields(['confirm'], { force: true });
-//             }
-//             callback();
-//         }
-
-//         handleWebsiteChange = (value) => {
-//             let autoCompleteResult;
-//             if (!value) {
-//                 autoCompleteResult = [];
-//             } else {
-//                 autoCompleteResult = ['.com', '.org', '.net'].map(domain => `${value}${domain}`);
-//             }
-//             this.setState({ autoCompleteResult });
-//         }
-//         showModal = () => {
-//             this.setState({
-//                 addVisible: true,
-//             });
-//         }
-
-//         handleOk = () => {
-//             this.setState({ addVisible: false });
-//             this.props.onCancel();
-//             this.props.form.resetFields();
-//         }
-
-//         render() {
-//             const { getFieldDecorator } = this.props.form;
-//             const { autoCompleteResult } = this.state;
-
-//             const formItemLayout = {
-//                 labelCol: {
-//                     xs: { span: 24 },
-//                     sm: { span: 8 },
-//                 },
-//                 wrapperCol: {
-//                     xs: { span: 24 },
-//                     sm: { span: 16 },
-//                 },
-//             };
-//             const tailFormItemLayout = {
-//                 wrapperCol: {
-//                     xs: {
-//                         span: 24,
-//                         offset: 0,
-//                     },
-//                     sm: {
-//                         span: 16,
-//                         offset: 8,
-//                     },
-//                 },
-//             };
-
-//             const websiteOptions = autoCompleteResult.map(website => (
-//                 <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
-//             ));
-//             return (
-//                 <Modal
-//                     addVisible={this.props.addVisible}
-//                     title="Create a new collection"
-//                     okText="Create"
-//                     onCancel={this.props.onCancel}
-//                     onOk={this.handleSubmit}
-                    
-//                 >
-//                 <Form onSubmit={this.handleSubmit}>
-//                     <Modal
-//                         addVisible={this.state.addVisible}
-//                         title="Title"
-//                         onOk={this.handleOk}
-//                         onCancel={this.handleCancel}
-//                         footer={[
-//                             <Link to='/App/EmployeeManage'><Button key="submit" type="primary" onClick={this.handleOk}>
-//                                 Submit
-//                 </Button></Link>,
-//                         ]}
-//                     >
-//                         {this.state.context}
-//                     </Modal>
-//                     <FormItem
-//                         {...formItemLayout}
-//                         label="账号"
-//                     >
-//                         {getFieldDecorator('username', {
-//                             rules: [{
-//                                 required: true, message: 'Please input your username!',
-//                             }, {
-//                                 validator: this.validateToNextPassword,
-//                             }],
-//                         })(
-//                             <Input />
-//                         )}
-//                     </FormItem>
-//                     <FormItem
-//                         {...formItemLayout}
-//                         label="姓名"
-//                     >
-//                         {getFieldDecorator('nickname', {
-//                             rules: [{
-//                                 required: true, message: 'Please input your E-mail!',
-//                             }],
-//                         })(
-//                             <Input />
-//                         )}
-//                     </FormItem>
-//                     <FormItem
-//                         {...formItemLayout}
-//                         label="E-mail"
-//                     >
-//                         {getFieldDecorator('email', {
-//                             rules: [{
-//                                 type: 'email', message: 'The input is not valid E-mail!',
-//                             }, {
-//                                 required: true, message: 'Please input your E-mail!',
-//                             }],
-//                         })(
-//                             <Input />
-//                         )}
-//                     </FormItem>
-//                     <FormItem
-//                         {...formItemLayout}
-//                         label="电话号码"
-//                     >
-//                         {getFieldDecorator('phone', {
-//                             rules: [{ required: true, message: 'Please input your phone number!' }],
-//                         })(
-//                             <Input />
-//                         )}
-//                     </FormItem>
-//                 </Form>
-//                 </Modal>
-//             );
-//         }
-//     }
-// )

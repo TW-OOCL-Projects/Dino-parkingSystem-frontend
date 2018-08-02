@@ -17,7 +17,7 @@ const ModifyEmployee = Form.create()(
     };
 
     getStatusCode(statusCode) {
-        if (statusCode === 201) {
+        if (statusCode === 204) {
             this.setState({
                 visible: true,
                 context: <Alert message="Success Text" type="success" />,
@@ -34,7 +34,8 @@ const ModifyEmployee = Form.create()(
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
-                ResourceAPi.addEmployee(values, (statusCode) => this.getStatusCode(statusCode));
+                console.log(this.props.employeeId);
+                ResourceAPi.ModifyEmployeeInfo({id: this.props.employeeId, ...values}, (statusCode) => this.getStatusCode(statusCode));
             }
         });
     }
@@ -77,6 +78,7 @@ const ModifyEmployee = Form.create()(
     }
 
     handleOk = () => {
+      this.props.getAllEmployees();
         this.setState({ visible: false });
         this.props.onCancel();
         this.props.form.resetFields();
@@ -128,9 +130,11 @@ const ModifyEmployee = Form.create()(
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
                     footer={[
-                        <Link to='/App/EmployeeManage'><Button key="submit" type="primary" onClick={this.handleOk}>
-                            Submit
-            </Button></Link>,
+                        <Link to='/App/EmployeeManage'>
+                            <Button key="submit" type="primary" onClick={this.handleOk}>
+                                确定
+                            </Button>
+                        </Link>,
                     ]}
                 >
                     {this.state.context}
