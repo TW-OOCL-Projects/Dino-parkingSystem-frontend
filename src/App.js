@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Layout } from 'antd';
+import { Layout ,Col,Avatar,Row,Button} from 'antd';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 
-import  MyHeader  from "./components/MyHeader";
+// import  MyHeader  from "./components/MyHeader";
 import  ParkingLotManage  from "./components/ParkingLotManage";
 import  ParkingBoyManage  from "./components/ParkingBoyManage";
 import  ParkingLotDashboard  from "./containers/ParkingLotDashboardContainer";
@@ -10,13 +10,16 @@ import  OrderManage  from "./components/OrderManage";
 import  MyFooter  from "./components/MyFooter";
 import EmployeeManage from './containers/EmployeeManageContainer';
 import WrappedAddEmployee from './components/AddEmployee';
-import MySider from './containers/MySiderContainer';
+import  MySider  from "./components/MySider";
+;
 
-const {Content} = Layout;
+const {Content,Header} = Layout;
 
 class App extends Component {
 
-  
+a=()=>{
+console.log(1)
+}
   
 
 
@@ -25,7 +28,15 @@ class App extends Component {
       <div>
         <Router>
         <Layout>
-          <MyHeader />
+          <Header className="header">
+            <Row>
+              <Col span={14}></Col>
+              <Col span={9} style={{textAlign:"right"  }}>
+              <Avatar style={{  backgroundColor: '#87d068' }} shape="square" icon="user" onClick={()=>{localStorage.clear("nikname");window.location.href="../"}}/>
+              &nbsp;&nbsp;<span style={{  color: 'white' }}>4333，欢迎您</span>
+              </Col>     
+            </Row>      
+          </Header>
 
           <Content style={{ padding: '0 50px', marginTop: 20}}>
             <Layout style={{ padding: '24px 0', background: '#fff' }}>
