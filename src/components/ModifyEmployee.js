@@ -7,7 +7,7 @@ const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
 
-const AddEmployee = Form.create()(
+const ModifyEmployee = Form.create()(
   class extends React.Component {
     state = {
         confirmDirty: false,
@@ -77,7 +77,6 @@ const AddEmployee = Form.create()(
     }
 
     handleOk = () => {
-      this.props.getAllEmployees()
         this.setState({ visible: false });
         this.props.onCancel();
         this.props.form.resetFields();
@@ -138,20 +137,6 @@ const AddEmployee = Form.create()(
                 </Modal>
                 <FormItem
                     {...formItemLayout}
-                    label="账号"
-                >
-                    {getFieldDecorator('username', {
-                        rules: [{
-                            required: true, message: 'Please input your username!',
-                        }, {
-                            validator: this.validateToNextPassword,
-                        }],
-                    })(
-                        <Input />
-                    )}
-                </FormItem>
-                <FormItem
-                    {...formItemLayout}
                     label="姓名"
                 >
                     {getFieldDecorator('nickname', {
@@ -194,4 +179,4 @@ const AddEmployee = Form.create()(
 )
 
 
-export default AddEmployee;
+export default ModifyEmployee;
