@@ -10,7 +10,7 @@ import  OrderManage  from "./components/order/OrderManage";
 import  MyFooter  from "./components/MyFooter";
 import EmployeeManage from './containers/EmployeeManageContainer';
 import WrappedAddEmployee from './components/employee/AddEmployee';
-import MySider from './components/MySider';
+import MySider from './containers/MySiderContainer';
 
 const {Content,Header} = Layout;
 

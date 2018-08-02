@@ -4,48 +4,55 @@ import {Link} from 'react-router-dom'
 const { Sider } = Layout;
 
 export default class MySider extends React.Component {
+    componentDidMount() {
+        const url = window.location.href.split('/');
+        this.props.setSiderStatus(url[url.length-1]);
+    }
+    setSiderStatus(status) {
+        this.props.setSiderStatus(status);
+    }
     render() {
-        const status = localStorage.getItem("status")
+        const status = this.props.status;
         return (
             
             <Sider width={200} style={{ background: '#fff' }}>
             
                 <Menu
                     mode="inline"
-                    defaultSelectedKeys={[`${status}`]}
+                    selectedKeys={[status]}
                     style={{ height: '100%' }}
                 >
                     
-                    <Menu.Item key="1">
-                        <Link to="/App/EmployeeManage" onClick={ev => localStorage.setItem("status","1")}>
+                    <Menu.Item key="EmployeeManage">
+                        <Link to="/App/EmployeeManage" onClick={() => this.setSiderStatus('EmployeeManage')}>
                             <Icon type="form" />
                             <span>员工管理</span>
                         </Link>
                     </Menu.Item>
 
-                    <Menu.Item key="2">
-                        <Link to="/App/ParkingLotManage" onClick={ev => localStorage.setItem("status","2")}>
+                    <Menu.Item key="ParkingLotManage">
+                        <Link to="/App/ParkingLotManage" onClick={() => this.setSiderStatus('ParkingLotManage')}>
                             <Icon type="form" />
                             <span>停车场管理</span>
                         </Link>
                     </Menu.Item>
 
-                    <Menu.Item key="3">
-                        <Link to="/App/ParkingBoyManage" onClick={ev => localStorage.setItem("status","3")}>
+                    <Menu.Item key="ParkingBoyManage">
+                        <Link to="/App/ParkingBoyManage" onClick={() => this.setSiderStatus('ParkingBoyManage')}>
                             <Icon type="form" />
                             <span>停车员管理</span>
                         </Link>
                     </Menu.Item>
 
-                    <Menu.Item key="4">
-                        <Link to="/App/ParkingLotDashboard" onClick={ev => localStorage.setItem("status","4")}>
+                    <Menu.Item key="ParkingLotDashboard">
+                        <Link to="/App/ParkingLotDashboard" onClick={() => this.setSiderStatus('ParkingLotDashboard')}>
                             <Icon type="form" />
                             <span>停车场Dashboard</span>
                         </Link>
                     </Menu.Item>
 
-                    <Menu.Item key="5">
-                        <Link to="/App/OrderManage"  onClick={ev => localStorage.setItem("status","5")}>
+                    <Menu.Item key="OrderManage">
+                        <Link to="/App/OrderManage"  onClick={() => this.setSiderStatus('OrderManage')}>
                             <Icon type="form" />
                             <span>订单管理</span>
                         </Link>
