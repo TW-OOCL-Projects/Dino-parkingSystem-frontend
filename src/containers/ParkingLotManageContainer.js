@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
-import EmployeeManage from "../components/employee/EmployeeManage";
+import ParkingLotManage from "../components/parkingLot/ParkingLotManage";
 import ResourceAPi from '../api/ResourceAPI';
-import {getAllEmployees} from '../actions';
+import {getAllParkingLots} from '../actions'
 
 const mapStateToProps = (state, ownProps) => {
     return {
-      employees: state.employees
+      parkingLots: state.parkinglots
     };
   };
   
   const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        getAllEmployees: () => {
-            ResourceAPi.getAllEmployees(employees => dispatch(getAllEmployees(employees)));
+        getAllParkingLots: () => {
+            ResourceAPi.getAllParkingLots(parkingLots => dispatch(getAllParkingLots(parkingLots)))
         }
     }
   };
@@ -20,4 +20,4 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(EmployeeManage);
+)(ParkingLotManage);

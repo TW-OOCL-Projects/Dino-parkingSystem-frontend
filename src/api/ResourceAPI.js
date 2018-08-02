@@ -50,6 +50,17 @@ const ResourceAPi = {
                 console.log(error);
             })
     },
+
+    getAllParkingLots(successCallBack) {
+        axios
+            .get(`${this.apiUrl}/parkingLots`)
+            .then(function (response) {
+                successCallBack(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    },
 }
 
 export default ResourceAPi;

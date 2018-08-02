@@ -3,7 +3,7 @@ import { Layout ,Col,Avatar,Row,Button} from 'antd';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 // import  MyHeader  from "./components/MyHeader";
-import  ParkingLotManage  from "./components/parkingLot/ParkingLotManage";
+import  ParkingLotManage  from "./containers/ParkingLotManageContainer";
 import  ParkingBoyManage  from "./components/parkingBoy/ParkingBoyManage";
 import  ParkingLotDashboard  from "./containers/ParkingLotDashboardContainer";
 import  OrderManage  from "./components/order/OrderManage";
