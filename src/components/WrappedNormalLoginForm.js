@@ -68,6 +68,7 @@ class NormalLoginForm extends React.Component {
             console.log("hahaha")
             const token = response.headers.authorization
             sessionStorage.setItem("token", token);
+            localStorage.setItem("nickname",'oocl')
             
             //  history.push("/EmployeeManage");
             window.location.href="/App/EmployeeManage";

@@ -1,14 +1,17 @@
 import React from 'react';
 import { Layout, Menu } from 'antd';
-const { Header } = Layout;
+import { Col } from 'antd/lib/grid';
+const { Header,Avatar,Badge } = Layout;
 
 export default class MyHeader extends React.Component {
     render() {
         return (
             
             <Header className="header">
-                <div className="logo" />
-        
+                <Col><Avatar shape="square" icon="user" /></Col>
+                {/* <span>
+                    <Badge dot><Avatar shape="square" icon="user" /></Badge>
+                    </span> */}
                 
             </Header>
             
