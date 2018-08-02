@@ -70,7 +70,7 @@ class AddEmployee extends React.Component {
 
   handleOk = () => {
     this.setState({ visible: false });
-    document.location.href='http://localhost:3000/EmployeeManage';
+    document.location.href='http://localhost:3000/App/EmployeeManage';
   }
 
   render() {

@@ -13,8 +13,8 @@ const ParkingLotBashBoardAPI = {
         const data = response
           .data
           .map(serverData => {
-            const {name, total, surplus, employee} = serverData;
-            return {name, total, surplus, employee};
+            const {parkingLotName, size, carNum, parkingBoyName} = serverData;
+            return {parkingLotName, size, carNum, parkingBoyName};
           });
         dispatch(action(data))
       })

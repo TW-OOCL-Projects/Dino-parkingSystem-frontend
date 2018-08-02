@@ -34,7 +34,8 @@ class ParkingLotDashboard extends React.Component {
                 .lotsList
                 .map(item => <Col span={8}>
                   <Card title={item.parkingLotName}>
-                    <Progress type="dashboard" percent={((item.size-item.carNum) / item.size) * 100}/>
+                    {/* <Progress type="dashboard" percent={(((item.size-item.carNum) / item.size) * 100).toFixed(2)}/> */}
+                    <Progress type="dashboard" format={() => `${item.carNum}/${item.size}`} percent={(((item.carNum) / item.size) * 100).toFixed(2)}/>
                     <div>停车员:{item.parkingBoyName}
                     </div>
                   </Card>

@@ -33,7 +33,7 @@ class App extends Component {
             <Layout style={{ padding: '24px 0', background: '#fff' }}>
 
               <MySiderContainer />
-
+              {/* <MySider /> */}
 
               <Route exact path="/App/EmployeeManage" component={EmployeeManageContainer}></Route>
               <Route  path="/App/ParkingLotManage" component={ParkingLotManage}></Route> 
