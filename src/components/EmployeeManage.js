@@ -140,8 +140,8 @@ export default class EmployeeManage extends React.Component {
                     onCreate={this.handleCreate}
                     getAllEmployees={this.props.getAllEmployees}
                 />
-                <div align='right'>
                 <Button type='primary' onClick={this.showModal}>新增</Button>
+                <span style={{float:'right'}}>
                 <Select style={{width: 100}}>
                     <Option value = 'id'>id</Option>
                     <Option value = 'username'>用户名</Option>
@@ -154,7 +154,7 @@ export default class EmployeeManage extends React.Component {
                     onSearch={value => console.log(value)}
                     enterButton
                 />
-                </div>
+                </span>
                 <Table
                     columns={this.columns}
                     // expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
