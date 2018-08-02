@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import Login from './Login';
+import Login from './components/Login';
 import registerServiceWorker from './registerServiceWorker';
 import 'antd/dist/antd.css';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
