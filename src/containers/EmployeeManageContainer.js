@@ -4,7 +4,7 @@ import ResourceAPi from '../api/ResourceAPI';
 
 const mapStateToProps = (state, ownProps) => {
     return {
-      employees: state.employees
+      employees: state
     };
   };
   
