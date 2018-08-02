@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import EmployeeManage from "../components/EmployeeManage";
+import EmployeeManage from "../components/employee/EmployeeManage";
 import ResourceAPi from '../api/ResourceAPI';
 
 const mapStateToProps = (state, ownProps) => {

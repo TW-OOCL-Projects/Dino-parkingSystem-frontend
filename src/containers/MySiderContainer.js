@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import EmployeeManage from "../components/EmployeeManage";
+import EmployeeManage from "../components/employee/EmployeeManage";
 import MySider from '../components/MySider';
 import ResourceAPi from '../api/ResourceAPI';
 

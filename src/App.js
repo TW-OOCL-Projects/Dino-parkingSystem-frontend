@@ -3,13 +3,13 @@ import { Layout } from 'antd';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 import  MyHeader  from "./components/MyHeader";
-import  ParkingLotManage  from "./components/ParkingLotManage";
-import  ParkingBoyManage  from "./components/ParkingBoyManage";
+import  ParkingLotManage  from "./components/parkingLot/ParkingLotManage";
+import  ParkingBoyManage  from "./components/parkingBoy/ParkingBoyManage";
 import  ParkingLotDashboard  from "./containers/ParkingLotDashboardContainer";
-import  OrderManage  from "./components/OrderManage";
+import  OrderManage  from "./components/order/OrderManage";
 import  MyFooter  from "./components/MyFooter";
 import EmployeeManage from './containers/EmployeeManageContainer';
-import WrappedAddEmployee from './components/AddEmployee';
+import WrappedAddEmployee from './components/employee/AddEmployee';
 import MySider from './containers/MySiderContainer';
 
 const {Content} = Layout;

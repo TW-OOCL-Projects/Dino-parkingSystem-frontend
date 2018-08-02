@@ -1,6 +1,6 @@
 import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete, Modal } from 'antd';
 import React from 'react';
-import ResourceAPi from '../api/ResourceAPI';
+import ResourceAPi from '../../api/ResourceAPI';
 
 const FormItem = Form.Item;
 const Option = Select.Option;

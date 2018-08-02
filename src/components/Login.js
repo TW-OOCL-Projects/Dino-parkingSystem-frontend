@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../App.css';
 import 'antd'
-import WrappedNormalLoginForm from './components/WrappedNormalLoginForm'
+import WrappedNormalLoginForm from './WrappedNormalLoginForm'
 
 class Login extends Component {
   render() {
     return (
       <div className="App">
-        <WrappedNormalLoginForm />    
+        <WrappedNormalLoginForm />
       </div>
     );
   }

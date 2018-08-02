@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import ParkingLotDashboard from "../components/ParkingLotDashboard";
+import ParkingLotDashboard from "../components/parkingLot/ParkingLotDashboard";
 import {showParkingLotsList} from '../actions/index'
 import ParkingLotDashboardAPI from '../api/ParkingLotDashboardAPI'
 
