@@ -35,7 +35,7 @@ class App extends Component {
               <MySiderContainer />
 
 
-              <Route exact path="/App/EmployeeManage" component={EmployeeManage}></Route>
+              <Route exact path="/App/EmployeeManage" component={EmployeeManageContainer}></Route>
               <Route  path="/App/ParkingLotManage" component={ParkingLotManage}></Route> 
               <Route  path="/App/ParkingBoyManage" component={ParkingBoyManage}></Route>
               <Route  path="/App/ParkingLotDashboard" component={ParkingLotDashboard}></Route> 
