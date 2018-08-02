@@ -47,7 +47,7 @@ console.log(1)
               <Route  path="/App/ParkingBoyManage" component={ParkingBoyManage}></Route>
               <Route  path="/App/ParkingLotDashboard" component={ParkingLotDashboard}></Route> 
               <Route  path="/App/OrderManage" component={OrderManage}></Route>    
-              <Route path="/AddEmployee" component={WrappedAddEmployee}></Route>
+              <Route path="/App/AddEmployee" component={WrappedAddEmployee}></Route>
 
             </Layout>
           </Content>
