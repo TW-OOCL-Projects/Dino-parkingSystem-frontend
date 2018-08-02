@@ -22,6 +22,7 @@ export default class EmployeeManage extends React.Component {
         addVisible: false,
         modifyVisible: false,
         employeeId: undefined,
+        context: '',
     };
 
     columns = [
@@ -34,12 +35,31 @@ export default class EmployeeManage extends React.Component {
             <span>
                 <a onClick={() => this.showModifyModal(record.id)}>修改</a>
                 <Divider type='vertical' />
-                <a href='#'>冻结</a>
+                <a onClick={() => this.changeEmployeeStatus(record.id, record.status)}>{record.status ? '冻结' : '恢复'}</a>
             </span>
         ),
     },
         // { title: 'Action', dataIndex: 'phone', key: 'x', render: () => <a href="javascript:;">Delete</a> },
       ];
+
+    changeEmployeeStatus = (employeeId, employeeStatus) => {
+        employeeStatus = employeeStatus ? false : true;
+        ResourceAPi.changeEmployeeStatus(employeeId, employeeStatus, (statusCode) => this.getStatusCode(statusCode))
+    }
+
+    getStatusCode(statusCode) {
+        if (statusCode === 204) {
+            this.setState({
+                statusVisible: true,
+                context: <Alert message="Success Text" type="success" />,
+            })
+        } else {
+            this.setState({
+                statusVisible: true,
+                context: <Alert message="Error Text" type="error" />,
+            })
+        }
+    }
 
     showModal = () => {
         this.setState({ addVisible: true });
@@ -76,6 +96,12 @@ export default class EmployeeManage extends React.Component {
     saveFormRef = (formRef) => {
         this.formRef = formRef;
     }
+
+    handleOk = () => {
+        this.props.getAllEmployees();
+          this.setState({ statusVisible: false });
+      }
+
     componentDidMount() {
         this.props.getAllEmployees();
     }
@@ -84,6 +110,21 @@ export default class EmployeeManage extends React.Component {
         return (
             
             <Content  style={{ padding: '0 24px', minHeight: 280 }}>
+                <Modal
+                    visible={this.state.statusVisible}
+                    title="Title"
+                    onOk={this.handleOk}
+                    onCancel={this.handleCancel}
+                    footer={[
+                        <Link to='/App/EmployeeManage'>
+                            <Button key="submit" type="primary" onClick={this.handleOk}>
+                                确定
+                            </Button>
+                        </Link>,
+                    ]}
+                >
+                    {this.state.context}
+                </Modal>
                 <ModifyEmployee
                     wrappedComponentRef={this.saveFormRef}
                     visible={this.state.modifyVisible}

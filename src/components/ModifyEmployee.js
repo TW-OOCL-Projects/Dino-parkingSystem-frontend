@@ -35,7 +35,7 @@ const ModifyEmployee = Form.create()(
             if (!err) {
                 console.log('Received values of form: ', values);
                 console.log(this.props.employeeId);
-                ResourceAPi.ModifyEmployeeInfo({id: this.props.employeeId, ...values}, (statusCode) => this.getStatusCode(statusCode));
+                ResourceAPi.modifyEmployeeInfo({id: this.props.employeeId, ...values}, (statusCode) => this.getStatusCode(statusCode));
             }
         });
     }
@@ -145,7 +145,7 @@ const ModifyEmployee = Form.create()(
                 >
                     {getFieldDecorator('nickname', {
                         rules: [{
-                            required: true, message: 'Please input your E-mail!',
+                            message: 'Please input your E-mail!',
                         }],
                     })(
                         <Input />
@@ -159,7 +159,7 @@ const ModifyEmployee = Form.create()(
                         rules: [{
                             type: 'email', message: 'The input is not valid E-mail!',
                         }, {
-                            required: true, message: 'Please input your E-mail!',
+                            message: 'Please input your E-mail!',
                         }],
                     })(
                         <Input />
@@ -170,7 +170,7 @@ const ModifyEmployee = Form.create()(
                     label="电话号码"
                 >
                     {getFieldDecorator('phone', {
-                        rules: [{ required: true, message: 'Please input your phone number!' }],
+                        rules: [{ message: 'Please input your phone number!' }],
                     })(
                         <Input />
                     )}

@@ -25,7 +25,7 @@ const ResourceAPi = {
             })
     },
     
-    ModifyEmployeeInfo(employee, successCallBack) {
+    modifyEmployeeInfo(employee, successCallBack) {
         axios.
             put(`${this.apiUrl}/users/${employee.id}`, employee)
             .then(function (response) {
@@ -36,12 +36,16 @@ const ResourceAPi = {
             })
     },
 
-    ChangeEmployeeStatus(employeeId, EmployeeStatus, successCallBack) {
-        axios.
-            patch(`${this.apiUrl}/users/${employeeId}`, EmployeeStatus)
+    changeEmployeeStatus(employeeId, employeeStatus, successCallBack) {
+        axios({
+            method: 'patch',
+            url: `${this.apiUrl}/users/${employeeId}`,
+            headers: { 'content-type': 'application/json' },
+            data: employeeStatus
+        })
             .then(function (response) {
                 successCallBack(response.status);
-            }) 
+            })
             .catch(function (error) {
                 console.log(error);
             })
