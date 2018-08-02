@@ -77,7 +77,7 @@ const AddEmployee = Form.create()(
     }
 
     handleOk = () => {
-      this.props.getAllEmployees()
+      this.props.getAllEmployees();
         this.setState({ visible: false });
         this.props.onCancel();
         this.props.form.resetFields();
@@ -129,10 +129,12 @@ const AddEmployee = Form.create()(
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
                     footer={[
-                        <Link to='/App/EmployeeManage'><Button key="submit" type="primary" onClick={this.handleOk}>
-                            Submit
-            </Button></Link>,
-                    ]}
+                        <Link to='/App/EmployeeManage'>
+                          <Button key="submit" type="primary" onClick={this.handleOk}>
+                            确定
+                          </Button>
+                        </Link>,                    
+                        ]}
                 >
                     {this.state.context}
                 </Modal>

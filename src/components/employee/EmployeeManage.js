@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout, Input, Select, Button, Table, Divider, Form, Modal, Alert, AutoComplete, } from 'antd';
 import {Link} from 'react-router-dom'
-import ResourceAPi from '../api/ResourceAPI';
+import ResourceAPi from '../../api/ResourceAPI';
 import AddEmployee from './AddEmployee';
 import ModifyEmployee from './ModifyEmployee';
 
@@ -21,6 +21,8 @@ export default class EmployeeManage extends React.Component {
     state = {
         addVisible: false,
         modifyVisible: false,
+        employeeId: undefined,
+        context: '',
     };
 
     columns = [
@@ -31,14 +33,33 @@ export default class EmployeeManage extends React.Component {
         { title: '电话号码', dataIndex: 'phone', key: 'phone' },
         { title: '操作', key: 'operation', render: (text, record) => (
             <span>
-                <a onClick={this.showModifyModal}>修改</a>
+                <a onClick={() => this.showModifyModal(record.id)}>修改</a>
                 <Divider type='vertical' />
-                <a href='#'>冻结</a>
+                <a onClick={() => this.changeEmployeeStatus(record.id, record.status)}>{record.status ? '冻结' : '恢复'}</a>
             </span>
         ),
     },
         // { title: 'Action', dataIndex: 'phone', key: 'x', render: () => <a href="javascript:;">Delete</a> },
       ];
+
+    changeEmployeeStatus = (employeeId, employeeStatus) => {
+        employeeStatus = employeeStatus ? false : true;
+        ResourceAPi.changeEmployeeStatus(employeeId, employeeStatus, (statusCode) => this.getStatusCode(statusCode))
+    }
+
+    getStatusCode(statusCode) {
+        if (statusCode === 204) {
+            this.setState({
+                statusVisible: true,
+                context: <Alert message="Success Text" type="success" />,
+            })
+        } else {
+            this.setState({
+                statusVisible: true,
+                context: <Alert message="Error Text" type="error" />,
+            })
+        }
+    }
 
     showModal = () => {
         this.setState({ addVisible: true });
@@ -61,8 +82,11 @@ export default class EmployeeManage extends React.Component {
         });
     }
 
-    showModifyModal = () => {
-        this.setState({ modifyVisible: true });
+    showModifyModal = (employeeId) => {
+        this.setState({ 
+            modifyVisible: true,
+            employeeId: employeeId,
+        });
     }
 
     handleModifyCancel = () => {
@@ -72,6 +96,12 @@ export default class EmployeeManage extends React.Component {
     saveFormRef = (formRef) => {
         this.formRef = formRef;
     }
+
+    handleOk = () => {
+        this.props.getAllEmployees();
+          this.setState({ statusVisible: false });
+      }
+
     componentDidMount() {
         this.props.getAllEmployees();
     }
@@ -80,12 +110,28 @@ export default class EmployeeManage extends React.Component {
         return (
             
             <Content  style={{ padding: '0 24px', minHeight: 280 }}>
+                <Modal
+                    visible={this.state.statusVisible}
+                    title="Title"
+                    onOk={this.handleOk}
+                    onCancel={this.handleCancel}
+                    footer={[
+                        <Link to='/App/EmployeeManage'>
+                            <Button key="submit" type="primary" onClick={this.handleOk}>
+                                确定
+                            </Button>
+                        </Link>,
+                    ]}
+                >
+                    {this.state.context}
+                </Modal>
                 <ModifyEmployee
                     wrappedComponentRef={this.saveFormRef}
                     visible={this.state.modifyVisible}
                     onCancel={this.handleModifyCancel}
                     onCreate={this.handleCreate}
                     getAllEmployees={this.props.getAllEmployees}
+                    employeeId={this.state.employeeId}
                 />
                 <AddEmployee
                     wrappedComponentRef={this.saveFormRef}
@@ -94,13 +140,13 @@ export default class EmployeeManage extends React.Component {
                     onCreate={this.handleCreate}
                     getAllEmployees={this.props.getAllEmployees}
                 />
-                <div align='right'>
                 <Button type='primary' onClick={this.showModal}>新增</Button>
+                <span style={{float:'right'}}>
                 <Select style={{width: 100}}>
                     <Option value = 'id'>id</Option>
                     <Option value = 'username'>用户名</Option>
                     <Option value = 'nickname'>姓名</Option>
-                    <Option value = 'email'>email</Option>
+                    <Option value = 'email'>E-mail</Option>
                     <Option value = 'phone'>电话号码</Option>
                 </Select>
                 <Search style={{width: 200}}
@@ -108,7 +154,7 @@ export default class EmployeeManage extends React.Component {
                     onSearch={value => console.log(value)}
                     enterButton
                 />
-                </div>
+                </span>
                 <Table
                     columns={this.columns}
                     // expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}

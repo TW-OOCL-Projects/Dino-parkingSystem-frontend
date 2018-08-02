@@ -23,7 +23,33 @@ const ResourceAPi = {
             .catch(function (error) {
                 console.log(error);
             })
-    }
+    },
+    
+    modifyEmployeeInfo(employee, successCallBack) {
+        axios.
+            put(`${this.apiUrl}/users/${employee.id}`, employee)
+            .then(function (response) {
+                successCallBack(response.status);
+            }) 
+            .catch(function (error) {
+                console.log(error);
+            })
+    },
+
+    changeEmployeeStatus(employeeId, employeeStatus, successCallBack) {
+        axios({
+            method: 'patch',
+            url: `${this.apiUrl}/users/${employeeId}`,
+            headers: { 'content-type': 'application/json' },
+            data: employeeStatus
+        })
+            .then(function (response) {
+                successCallBack(response.status);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    },
 }
 
 export default ResourceAPi;
