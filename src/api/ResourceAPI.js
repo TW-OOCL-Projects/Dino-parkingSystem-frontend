@@ -61,6 +61,17 @@ const ResourceAPi = {
                 console.log(error);
             });
     },
+
+    getAllOrders(successCallBack) {
+        axios
+            .get(`${this.apiUrl}/orders`)
+            .then(function (response) {
+                successCallBack(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 }
 
 export default ResourceAPi;
