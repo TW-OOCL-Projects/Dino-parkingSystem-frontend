@@ -32,7 +32,7 @@ console.log(1)
               <Col span={14}></Col>
               <Col span={9} style={{textAlign:"right"  }}>
               <Avatar style={{  backgroundColor: '#87d068' }} shape="square" icon="user" onClick={()=>{localStorage.clear("nikname");window.location.href="../"}}/>
-              &nbsp;&nbsp;<span style={{  color: 'white' }}>4333，欢迎您</span>
+              &nbsp;&nbsp;<span style={{  color: 'white' }}>Admin，欢迎您</span>
               </Col>     
             </Row>      
           </Header>
