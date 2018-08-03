@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import OrderManage from "../components/order/OrderManage";
 import ResourceAPi from '../api/ResourceAPI';
-import {getAllOrders} from '../actions';
+import {getAllOrders, getAllParkingBoys, dispatchOrderSuccess} from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
     return {
-      orders: state.orders
+      orders: state.orders,
+      parkingBoys: state.parkingboys
     };
   };
   
@@ -13,7 +14,11 @@ const mapStateToProps = (state, ownProps) => {
     return {
         getAllOrders: () => {
             ResourceAPi.getAllOrders(orders => dispatch(getAllOrders(orders)));
-        }
+        },
+        getAllParkingBoys: () => {
+            ResourceAPi.getAllParkingBoys(parkingBoys => dispatch(getAllParkingBoys(parkingBoys)));
+        },
+        dispatchOrderSuccess: (id) => dispatch(dispatchOrderSuccess(id)),
     }
   };
 

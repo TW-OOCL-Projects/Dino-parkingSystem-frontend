@@ -6,7 +6,8 @@
     import parkinglots from './parkinglots';
     import mysider from './mysider'
     import orders from './orders'
-    export default combineReducers({    employees,dashboard, parkinglots, mysider, orders  });   
+    import parkingboys from './parkingboys'
+    export default combineReducers({    employees,dashboard, parkinglots, mysider, orders, parkingboys  });   
 
 
     

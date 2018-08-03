@@ -71,6 +71,31 @@ const ResourceAPi = {
             .catch(function (error) {
                 console.log(error);
             });
+    },
+
+    getAllParkingBoys(successCallBack) {
+        axios
+            .get(`${this.apiUrl}/parkingBoys`)
+            .then(function (response) {
+                successCallBack(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    },
+
+    dispatchOrder(orderId, parkingBoyId, successCallBack) {
+        axios
+            .put(`${this.apiUrl}/orders/${orderId}`, {
+                "status":"waitPark",
+                "parkingBoyId":parkingBoyId
+            })
+            .then(function (response) {
+                successCallBack(response.status);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 }
 

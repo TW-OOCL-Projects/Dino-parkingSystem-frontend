@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import ResourceAPi from '../../api/ResourceAPI';
 import AddEmployee from '../employee/AddEmployee';
 import ModifyEmployee from '../employee/ModifyEmployee';
+import ChooseParkingBoy from './ChooseParkingBoy';
 
 const { Content } = Layout;
 const {Search} = Input;
@@ -11,10 +12,8 @@ const {Option} = Select;
 
 export default class OrderManage extends React.Component {
     state = {
-        addVisible: false,
-        modifyVisible: false,
-        employeeId: undefined,
-        context: '',
+        visible: false,
+        orderId: undefined,
     };
 
     columns = [
@@ -24,72 +23,23 @@ export default class OrderManage extends React.Component {
         { title: '状态', dataIndex: 'status', key: 'status' },
         { title: '操作', key: 'operation', render: (text, record) => (
             <span>
-                <a onClick={() => this.changeEmployeeStatus(record.id, record.status)}>{record.status === 'nohandle' ? '指派' : ''}</a>
+                <a onClick={() => this.dispatchOrder(record.id)}>{record.status === 'noRob' ? '指派' : ''}</a>
             </span>
         ),
     },
         // { title: 'Action', dataIndex: 'phone', key: 'x', render: () => <a href="javascript:;">Delete</a> },
       ];
-
-    changeEmployeeStatus = (employeeId, employeeStatus) => {
-        employeeStatus = employeeStatus ? false : true;
-        ResourceAPi.changeEmployeeStatus(employeeId, employeeStatus, (statusCode) => this.getStatusCode(statusCode))
+    
+    dispatchOrder(orderId) {
+        this.setState({
+            visible: true,
+            orderId: orderId,
+        })
     }
 
-    getStatusCode(statusCode) {
-        if (statusCode === 204) {
-            this.setState({
-                statusVisible: true,
-                context: <Alert message="Success Text" type="success" />,
-            })
-        } else {
-            this.setState({
-                statusVisible: true,
-                context: <Alert message="Error Text" type="error" />,
-            })
-        }
+    onCancel() {
+        this.setState({ visible: false });
     }
-
-    showModal = () => {
-        this.setState({ addVisible: true });
-    }
-
-    handleCancel = () => {
-        this.setState({ addVisible: false });
-    }
-
-    handleCreate = () => {
-        const form = this.formRef.props.form;
-        form.validateFields((err, values) => {
-            if (err) {
-                return;
-            }
-
-            console.log('Received values of form: ', values);
-            form.resetFields();
-            this.setState({ addVisible: false });
-        });
-    }
-
-    showModifyModal = (employeeId) => {
-        this.setState({ 
-            modifyVisible: true,
-            employeeId: employeeId,
-        });
-    }
-
-    handleModifyCancel = () => {
-        this.setState({ modifyVisible: false });
-    }
-
-    saveFormRef = (formRef) => {
-        this.formRef = formRef;
-    }
-
-    handleOk = () => {
-        this.props.getAllEmployees();
-          this.setState({ statusVisible: false });
-      }
 
     componentDidMount() {
         this.props.getAllOrders();
@@ -99,35 +49,13 @@ export default class OrderManage extends React.Component {
         return (
             
             <Content  style={{ padding: '0 24px', minHeight: 280 }}>
-                <Modal
-                    visible={this.state.statusVisible}
-                    title="Title"
-                    onOk={this.handleOk}
-                    onCancel={this.handleCancel}
-                    footer={[
-                        <Link to='/App/EmployeeManage'>
-                            <Button key="submit" type="primary" onClick={this.handleOk}>
-                                确定
-                            </Button>
-                        </Link>,
-                    ]}
-                >
-                    {this.state.context}
-                </Modal>
-                <ModifyEmployee
-                    wrappedComponentRef={this.saveFormRef}
-                    visible={this.state.modifyVisible}
-                    onCancel={this.handleModifyCancel}
-                    onCreate={this.handleCreate}
-                    getAllEmployees={this.props.getAllEmployees}
-                    employeeId={this.state.employeeId}
-                />
-                <AddEmployee
-                    wrappedComponentRef={this.saveFormRef}
-                    visible={this.state.addVisible}
-                    onCancel={this.handleCancel}
-                    onCreate={this.handleCreate}
-                    getAllEmployees={this.props.getAllEmployees}
+                <ChooseParkingBoy 
+                    visible={this.state.visible}
+                    orderId={this.state.orderId}
+                    onCancel={() => this.onCancel()}
+                    getAllParkingBoys={this.props.getAllParkingBoys}
+                    parkingBoys={this.props.parkingBoys}
+                    dispatchOrderSuccess={this.props.dispatchOrderSuccess}
                 />
                 <span style={{float:'right'}}>
                 <Select style={{width: 100}}>
